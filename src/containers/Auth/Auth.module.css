@@ -1,16 +1,7 @@
 .Auth {
-  display: flex;
-  justify-content: center;
   padding-top: 100px;
   flex-grow: 1;
-  width: 100%;
   background-color: #e0e5ec;
-}
-
-.Auth > div {
-  width: 100%;
-  max-width: 600px;
-  padding: 0 20px;
 }
 
 .Auth h1 {
@@ -24,13 +15,15 @@
     -9px -9px 16px rgba(255, 255, 255, 0.5);
   padding: 30px;
   display: flex;
+  max-width: 600px;
+  margin: 0 auto;
   flex-direction: column;
   border-radius: 7px;
 }
 
 .btnContainer {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
   margin-top: 20px;
   flex-wrap: wrap;
 }

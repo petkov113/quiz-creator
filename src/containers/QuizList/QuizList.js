@@ -16,14 +16,12 @@ export default class QuizList extends Component {
 
     render() {
         return (
-            <div className={classes.QuizContainer}>
-                <div className={classes.QuizList}>
-                    <h1>Список тестов</h1>
-                    <ul>
-                        {this.renderQuizes()}
-                    </ul>
-                </div>
+          <div className={classes.QuizContainer}>
+            <h1>Список тестов</h1>
+            <div className={classes.QuizList}>
+              <ul>{this.renderQuizes()}</ul>
             </div>
-        )
+          </div>
+        );
     }
 }
