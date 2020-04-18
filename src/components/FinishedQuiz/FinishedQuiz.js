@@ -20,7 +20,6 @@ const FinishedQuiz = (props) => {
             props.results[quizItem.id] === "error" ? "fa-times" : "fa-check",
             classes[props.results[quizItem.id]],
           ];
-          console.log(props.results);
           return (
             <li key={index}>
               <strong> {index + 1}. </strong>&nbsp;
@@ -37,7 +36,7 @@ const FinishedQuiz = (props) => {
 
       <div>
         <Button
-          onRetry={props.onRetry}
+          onClick={props.onRetry}
           value="Начать сначала"
           btnType="primary"
         />

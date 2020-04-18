@@ -8,6 +8,7 @@ import {
   validateForm,
 } from "../../Form/formFramework";
 import Select from "../../components/UI/Select/Select";
+import axios from "../../axios/axios-quiz";
 
 const createOptionControl = (number) => {
   return createControl(
@@ -38,7 +39,7 @@ const createFormControls = () => {
 
 export default class QuizCreator extends Component {
   state = {
-    quiz: [],
+    quiz: [], // addQuestionHandler
     isFormValid: false,
     rightAnswerId: 1,
     formControls: createFormControls(),
@@ -53,27 +54,34 @@ export default class QuizCreator extends Component {
 
     const quiz = [...this.state.quiz];
     const index = quiz.length + 1;
+    const {
+      question,
+      option1,
+      option2,
+      option3,
+      option4,
+    } = this.state.formControls;
 
     const questionItem = {
-      question: this.state.formControls.question.value,
+      question: question.value,
       id: index,
       rightAnswerId: this.state.rightAnswerId,
       answers: [
         {
-          text: this.state.formControls.option1.value,
-          id: this.state.formControls.option1.id,
+          text: option1.value,
+          id: option1.id,
         },
         {
-          text: this.state.formControls.option2.value,
-          id: this.state.formControls.option2.id,
+          text: option2.value,
+          id: option2.id,
         },
         {
-          text: this.state.formControls.option3.value,
-          id: this.state.formControls.option3.id,
+          text: option3.value,
+          id: option3.id,
         },
         {
-          text: this.state.formControls.option4.value,
-          id: this.state.formControls.option4.id,
+          text: option4.value,
+          id: option4.id,
         },
       ],
     };
@@ -87,6 +95,7 @@ export default class QuizCreator extends Component {
       formControls: createFormControls(),
     });
   };
+
   changeHandler = (value, controlName) => {
     const formControls = { ...this.state.formControls };
     const control = { ...formControls[controlName] };
@@ -130,9 +139,19 @@ export default class QuizCreator extends Component {
   selectChangeHandler = (event) =>
     this.setState({ rightAnswerId: +event.target.value });
 
-  createQuizHandler = (event) => {
+  createQuizHandler = async (event) => {
     event.preventDefault();
-    console.log(this.state.quiz);
+    try {
+      await axios.post("/quiz.json", this.state.quiz);
+      this.setState({
+        quiz: [],
+        isFormValid: false,
+        rightAnswerId: 1,
+        formControls: createFormControls(),
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   render() {
@@ -152,28 +171,28 @@ export default class QuizCreator extends Component {
 
     return (
       <div className={classes.QuizCreator}>
-          <form className={classes.creatorForm} onSubmit={this.submitHandler}>
-            {this.renderControls()}
-            <hr />
-            {select}
+        <form className={classes.creatorForm} onSubmit={this.submitHandler}>
+          {this.renderControls()}
+          <hr />
+          {select}
 
-            <div className={classes.btnContainer}>
-              <Button
-                btnType="secondary"
-                onClick={this.addQuestionHandler}
-                value="Добавить вопрос"
-                disabled={!this.state.isFormValid}
-              />
+          <div className={classes.btnContainer}>
+            <Button
+              btnType="secondary"
+              onClick={this.addQuestionHandler}
+              value="Добавить вопрос"
+              disabled={!this.state.isFormValid}
+            />
 
-              <Button
-                btnType="primary"
-                onClick={this.createQuizHandler}
-                value="Добавить тест"
-                disabled={this.state.quiz.length === 0}
-              />
-            </div>
-          </form>
-        </div>
+            <Button
+              btnType="primary"
+              onClick={this.createQuizHandler}
+              value="Добавить тест"
+              disabled={this.state.quiz.length === 0}
+            />
+          </div>
+        </form>
+      </div>
     );
   }
 }
