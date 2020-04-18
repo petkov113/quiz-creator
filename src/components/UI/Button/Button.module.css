@@ -1,0 +1,40 @@
+.primary, .secondary {
+  display: block;
+  border: none;
+  padding: 10px 40px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  color: rgb(44, 44, 44);
+  letter-spacing: 0.07em;
+  border-radius: 10px;
+  background-color: #E0E5EC;
+  box-shadow: 5px 5px 10px #bec3c9, -5px -5px 10px #ffffff; 
+}
+
+.primary:disabled, .secondary:disabled {
+  cursor: not-allowed;
+  color: rgb(168, 168, 168);
+}
+
+.primary:disabled:hover, .secondary:disabled:hover {
+  box-shadow: 5px 5px 10px #bec3c9, -5px -5px 10px #ffffff; 
+}
+
+.primary:hover, .secondary:hover {
+  box-shadow: 2px 2px 5px #bec3c9, -2px -2px 5px #ffffff;
+}
+    
+.primary:active, .secondary:active {
+  box-shadow: inset 1px 1px 2px #bec3c9, inset -1px -1px 2px #ffffff;
+}
+
+.primary:focus, .secondary:focus { 
+  outline: 0;
+}
+
+.secondary {
+  color: rgb(97, 96, 96);
+}
+  
