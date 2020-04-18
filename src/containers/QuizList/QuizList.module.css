@@ -1,35 +1,55 @@
+.QuizContainer {
+  background-color: #e0e5ec;
+  flex-grow: 1;
+  padding-top: 100px;
+}
+
 .QuizList {
-    display: flex;
-    padding-top: 100px;
-    flex-direction: column;
-    align-items: center;
-    flex-grow: 1;
-    width: 100%;
-    background: linear-gradient(90deg, #fd8355 0%, #f0576c 37%, #f78cbd 100%);
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  height: 50%;
+  background-color: #e0e5ec;
+  color: rgb(44, 44, 44);
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5);
 }
 
 .QuizList h1 {
-    width: 100%;
-    color: #FFF;
-    text-align: center;
+  width: 100%;
+  color: rgb(44, 44, 44);
+  text-align: center;
 }
 
 .QuizList ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .QuizList li {
-    margin-bottom: 10px;
+  display: block;
+  border: none;
+  padding: 10px 40px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  color: rgb(44, 44, 44);
+  letter-spacing: 0.07em;
+  border-radius: 10px;
+  background-color: #e0e5ec;
+  box-shadow: 5px 5px 10px #bec3c9, -5px -5px 10px #ffffff;
 }
 
 .QuizList li a {
-    text-decoration: none;
-    color: #fff;
-    transition: all .3s ease;
+  text-decoration: none;
+  color: rgb(44, 44, 44);
 }
 
-.QuizList li a:hover {
-    color: #20242f;
+.QuizList li:hover{
+  box-shadow: 2px 2px 5px #bec3c9, -2px -2px 5px #ffffff;
+  transition: background 0.3s ease;
 }

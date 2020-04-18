@@ -1,19 +1,26 @@
 .AnswerItem {
-    border: 1px solid #fff;
-    padding: 5px 10px;
-    margin-bottom: 5px;
-    cursor: pointer;
-    border-radius: 7px;
+  display: block;
+  border: none;
+  padding: 10px 40px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  color: rgb(44, 44, 44);
+  letter-spacing: 0.07em;
+  border-radius: 10px;
+  background-color: #e0e5ec;
+  box-shadow: 5px 5px 10px #bec3c9, -5px -5px 10px #ffffff;
 }
 
 .AnswerItem:hover {
-    background:rgba(255,255,255, 20%);
-    transition: background .3s ease;
+  box-shadow: 2px 2px 5px #bec3c9, -2px -2px 5px #ffffff;
+  transition: background 0.3s ease;
 }
 
 .AnswerItem.success {
-    background: rgba(0, 255, 72, 0.382);
+  background: rgba(0, 255, 72, 0.382);
 }
 .AnswerItem.error {
-    background: rgba(255, 0, 0, 0.375);
+  background: rgba(255, 0, 0, 0.375);
 }

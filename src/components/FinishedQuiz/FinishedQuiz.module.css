@@ -1,25 +1,26 @@
-.FinishedQuiz{
-    padding: 20px;
-    color: #ffffff;
-    border: 2px solid #fff;
-    border-radius: 5px;
-    box-sizing: border-box;
-    margin: 5px;
+.FinishedQuiz {
+  padding: 20px;
+  color: rgb(44, 44, 44);
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin: 5px;
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5);
 }
 
 .FinishedQuiz ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .FinishedQuiz ul li i {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .success {
-    color: rgba(0, 255, 72, 0.382);
+  color: rgba(0, 122, 35, 0.382);
 }
 .error {
-    color: rgba(255, 0, 0, 0.375);
+  color: rgba(255, 0, 0, 0.375);
 }
