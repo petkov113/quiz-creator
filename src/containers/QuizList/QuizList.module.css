@@ -2,26 +2,24 @@
   background-color: #e0e5ec;
   flex-grow: 1;
   padding-top: 100px;
+  color: rgb(44, 44, 44);
 }
 
 .QuizList {
   display: flex;
-  margin: 0 auto;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  margin: 0 auto;
   border-radius: 7px;
+  min-height: 320px;
   max-width: 600px;
   padding: 30px 40px;
   background-color: #e0e5ec;
-  color: rgb(44, 44, 44);
   box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
     -9px -9px 16px rgba(255, 255, 255, 0.5);
 }
 
 h1 {
-  width: 100%;
-  display: block;
-  color: rgb(44, 44, 44);
   text-align: center;
   margin: 0 auto;
   margin-bottom: 20px;
@@ -36,24 +34,67 @@ h1 {
 .QuizList li {
   display: block;
   border: none;
-  padding: 10px 40px;
   font-size: 16px;
   margin-bottom: 15px;
   font-weight: 600;
-  cursor: pointer;
-  color: rgb(44, 44, 44);
   letter-spacing: 0.07em;
   border-radius: 10px;
   background-color: #e0e5ec;
   box-shadow: 5px 5px 10px #bec3c9, -5px -5px 10px #ffffff;
+  -webkit-animation: fadein 0.3s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0.3s; /* Firefox < 16 */
+  -ms-animation: fadein 0.3s; /* Internet Explorer */
+  -o-animation: fadein 0.3s; /* Opera < 12.1 */
+  animation: fadein 0.3s;
 }
 
 .QuizList li a {
-  text-decoration: none;
   color: rgb(44, 44, 44);
+  text-decoration: none;
+  display: block;
+  padding: 10px 40px;
 }
 
 .QuizList li:hover {
   box-shadow: 2px 2px 5px #bec3c9, -2px -2px 5px #ffffff;
   transition: background 0.3s ease;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

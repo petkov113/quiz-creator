@@ -1,5 +1,6 @@
 import axios from "../../axios/axios-quiz";
-import { SUCCESS, SHOW_LOADER, HIDE_LOADER } from "../types/types";
+import { SUCCESS } from "../types/types";
+import { showLoader, hideLoader } from "./commonActions";
 
 export function getQuizes() {
   return async (dispatch) => {
@@ -25,17 +26,5 @@ function succes(data) {
   return {
     type: SUCCESS,
     payload: data,
-  };
-}
-
-function showLoader() {
-  return {
-    type: SHOW_LOADER,
-  };
-}
-
-function hideLoader() {
-  return {
-    type: HIDE_LOADER,
   };
 }

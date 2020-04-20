@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect } from "react";
 import classes from "./QuizList.module.css";
 import { NavLink } from "react-router-dom";
 import Loader from "../../components/UI/Loader/Loader";

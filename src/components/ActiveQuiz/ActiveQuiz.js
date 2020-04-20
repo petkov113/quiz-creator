@@ -2,17 +2,17 @@ import React from 'react';
 import classes from './ActiveQuiz.module.css';
 import AnswersList from './AnswersList/AnswersList'
 
-const ActiveQuiz = props => {
+const ActiveQuiz = ({answerNumber, question, quizLength, answers, onAnswerClick, state}) => {
     return (
      <div className ={classes.ActiveQuiz}>
         <p className={classes.Question}>
-            <span> <strong> {props.answerNumber}. </strong> {props.question} </span>
-            <small>{props.answerNumber} из {props.quizLength}</small>
+            <span> <strong> {answerNumber}. </strong> {question} </span>
+            <small>{answerNumber} из {quizLength}</small>
         </p>
         <AnswersList 
-            answers={props.answers} 
-            onAnswerClick={props.onAnswerClick} 
-            state={props.state}
+            answers={answers} 
+            onAnswerClick={onAnswerClick} 
+            state={state}
         />
      </div>
 )}
