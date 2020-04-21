@@ -9,3 +9,6 @@ export const FINISHED = "QUIZ/FINISHED";
 export const RETRY_QUIZ = "QUIZ/RETRY_QUIZ";
 export const QUIZ_SET_STATE = "QUIZ/QUIZ_SET_STATE";
 export const SET_QUIZ = "QUIZ/SET_QUIZ";
+
+export const ADD_QUESTION = "CREATOR/ADD_QUESTION"
+export const RESET_QUIZ = "CREATOR/RESET_QUIZ";
