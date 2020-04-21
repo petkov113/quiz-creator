@@ -16,6 +16,7 @@
   padding: 30px;
   display: flex;
   max-width: 600px;
+  min-height: 385px;
   margin: 0 auto;
   flex-direction: column;
   border-radius: 7px;
@@ -26,4 +27,59 @@
   flex-direction: column;
   margin-top: 20px;
   flex-wrap: wrap;
+}
+
+.warning {
+  color: #f0505d;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 8px;
+  margin-left: 3px;
+  margin-top: 5px;
+
+  -webkit-animation: fadein 0.2s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0.2s; /* Firefox < 16 */
+  -ms-animation: fadein 0.2s; /* Internet Explorer */
+  -o-animation: fadein 0.2s; /* Opera < 12.1 */
+  animation: fadein 0.2s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

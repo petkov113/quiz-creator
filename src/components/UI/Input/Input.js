@@ -1,34 +1,27 @@
-import React from 'react'
-import classes from './Input.module.css'
+import React from "react";
+import classes from "./Input.module.css";
 
-function isInvalid({valid, touched, shouldValidate}) {
-    return !valid && shouldValidate && touched
+const isInvalid = ({ valid, touched, shouldValidate }) => {
+  return !valid && shouldValidate && touched;
 }
 
-const Input = props => {
+const Input = ({ type, label, value, errorMessage, onChange, ...props }) => {
+  const inputType = type || "text";
+  const cls = [classes.Input];
+  const htmlFor = `${inputType}-${Math.random()}`;
 
-    const inputType = props.type || 'text'
-    const cls = [classes.Input]
-    const htmlFor = `${inputType}-${Math.random()}`
+  if (isInvalid(props)) {
+    cls.push(classes.invalid);
+  }
 
-    if (isInvalid(props)) {
-        cls.push(classes.invalid)
-    }
+  return (
+    <div className={cls.join(" ")}>
+      <label htmlFor={htmlFor}>{label}</label>
 
-    return ( 
-        <div className={cls.join(' ')}>
-            <label htmlFor={htmlFor}>
-                {props.label}
-            </label>
-            
-            <input 
-                type={inputType}
-                id={htmlFor}
-                value={props.value}
-                onChange={props.onChange} />
-            { isInvalid(props) ? <span>{props.errorMessage} </span> : '\u00A0' }
-        </div>
-    )
-}
+      <input type={inputType} id={htmlFor} value={value} onChange={onChange} />
+      {isInvalid(props) ? <span>{errorMessage} </span> : "\u00A0"}
+    </div>
+  );
+};
 
 export default Input;

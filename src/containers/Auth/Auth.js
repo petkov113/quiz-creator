@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import classes from "./Auth.module.css";
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
-import axios from "axios";
+import { auth } from "../../redux/actions/authActions";
 
 const validateEmail = (email) => {
   const testReg = new RegExp(
@@ -11,7 +12,7 @@ const validateEmail = (email) => {
   return testReg.test(String(email).toLowerCase());
 };
 
-export default class Auth extends Component {
+class Auth extends Component {
   state = {
     isFormValid: false,
 
@@ -20,7 +21,7 @@ export default class Auth extends Component {
         value: "",
         type: "email",
         label: "Email",
-        errorMessage: "Введите корректный email",
+        errorMessage: "Please, enter a correct email",
         valid: false,
         touched: false,
         validation: {
@@ -31,8 +32,8 @@ export default class Auth extends Component {
       password: {
         value: "",
         type: "password",
-        label: "Пароль",
-        errorMessage: "Введите корректный пароль",
+        label: "Password",
+        errorMessage: "Password doesn't meet requirements",
         valid: false,
         touched: false,
         validation: {
@@ -43,38 +44,20 @@ export default class Auth extends Component {
     },
   };
 
-  loginHandler = async () => {
-    const authData = {
-      email: this.state.formControls.email.value,
-      password: this.state.formControls.password.value,
-      returnSecureToken: true,
-    };
-    try {
-      const response = await axios.post(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBYZLvVWI9en4rGS1DuEp2C1RlpppUw7k8",
-        authData
-      );
-      console.log(response.data);
-    } catch (e) {
-      console.log(e);
-    }
+  loginHandler = () => {
+    this.props.auth(
+      this.state.formControls.email.value,
+      this.state.formControls.password.value,
+      true
+    );
   };
 
-  registerHandler = async () => {
-    const authData = {
-      email: this.state.formControls.email.value,
-      password: this.state.formControls.password.value,
-      returnSecureToken: true,
-    };
-    try {
-      const response = await axios.post(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBYZLvVWI9en4rGS1DuEp2C1RlpppUw7k8",
-        authData
-      );
-      console.log(response.data);
-    } catch (e) {
-      console.log(e);
-    }
+  registerHandler = () => {
+    this.props.auth(
+      this.state.formControls.email.value,
+      this.state.formControls.password.value,
+      false
+    );
   };
 
   sumbitHandler = (e) => e.preventDefault();
@@ -156,14 +139,19 @@ export default class Auth extends Component {
                 btnType="primary"
                 onClick={this.loginHandler}
                 disabled={!this.state.isFormValid}
-                value="Войти"
+                value="Sign in"
               />
 
               <Button
                 btnType="secondary"
                 onClick={this.registerHandler}
-                value="Зарегистрироваться"
+                value="Register"
               />
+              {this.props.error ? (
+                <span className={classes.warning}>
+                  This mail is already registered. Please, sign in.
+                </span>
+              ) : null}
             </div>
           </form>
         </div>
@@ -171,3 +159,9 @@ export default class Auth extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  error: state.auth.error,
+});
+
+export default connect(mapStateToProps, { auth })(Auth);
