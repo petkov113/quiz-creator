@@ -7,7 +7,7 @@ const ActiveQuiz = ({answerNumber, question, quizLength, answers, onAnswerClick,
      <div className ={classes.ActiveQuiz}>
         <p className={classes.Question}>
             <span> <strong> {answerNumber}. </strong> {question} </span>
-            <small>{answerNumber} из {quizLength}</small>
+            <small>{answerNumber}/{quizLength}</small>
         </p>
         <AnswersList 
             answers={answers} 

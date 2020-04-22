@@ -57,7 +57,6 @@ h1 {
 
 .QuizList li:hover {
   box-shadow: 2px 2px 5px #bec3c9, -2px -2px 5px #ffffff;
-  transition: background 0.3s ease;
 }
 
 @keyframes fadein {

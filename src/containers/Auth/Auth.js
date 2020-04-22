@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import classes from "./Auth.module.css";
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
-import { auth } from "../../redux/actions/authActions";
+import { auth, authClear } from "../../redux/actions/authActions";
 
 const validateEmail = (email) => {
   const testReg = new RegExp(
@@ -125,6 +125,10 @@ class Auth extends Component {
     });
   };
 
+  componentWillUnmount() {
+    this.props.authClear()
+  }
+
   render() {
     return (
       <div className={classes.Auth}>
@@ -148,9 +152,7 @@ class Auth extends Component {
                 value="Register"
               />
               {this.props.error ? (
-                <span className={classes.warning}>
-                  This mail is already registered. Please, sign in.
-                </span>
+                <span className={classes.warning}>{this.props.error}</span>
               ) : null}
             </div>
           </form>
@@ -160,8 +162,6 @@ class Auth extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  error: state.auth.error,
-});
+const mapStateToProps = (state) => ({ error: state.auth.error });
 
-export default connect(mapStateToProps, { auth })(Auth);
+export default connect(mapStateToProps, { auth, authClear })(Auth);

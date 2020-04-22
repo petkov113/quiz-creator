@@ -5,14 +5,14 @@ import Backdrop from "../../UI/Backdrop/Backdrop";
 
 const Drawer = ({ isOpen, onClose, isAuthenticated }) => {
   let links = [
-    { to: "/", label: "Список", exact: true },
-    { to: "/auth", label: "Авторизация", exact: false },
+    { to: "/", label: "Quizzes", exact: true },
+    { to: "/auth", label: "Authorization"},
   ];
 
   if (isAuthenticated) {
     links = [
-      { to: "/", label: "Список", exact: true },
-      { to: "/quiz-creator", label: "Создать тест" },
+      { to: "/", label: "Quizzes", exact: true },
+      { to: "/quiz-creator", label: "Create Quiz" },
       { to: "/logout", label: "Logout" },
     ];
   }

@@ -16,4 +16,4 @@ export const RESET_QUIZ = "CREATOR/RESET_QUIZ";
 export const AUTH_SUCCESS = "AUTH/AUTH_SUCCESS";
 export const AUTH_LOGOUT = "AUTH/AUTH_LOGOUT";
 export const AUTH_ERROR = "AUTH/AUTH_ERROR";
-
+export const AUTH_CLEAR_ERROR = "AUTH/AUTH_CLEAR_ERROR";

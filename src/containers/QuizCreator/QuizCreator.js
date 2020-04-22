@@ -17,8 +17,8 @@ import {
 const createOptionControl = (number) => {
   return createControl(
     {
-      label: `Вариант ${number}`,
-      errorMessage: "Поле не может быть пустым",
+      label: `Option ${number}`,
+      errorMessage: "The field can't be empthy",
       id: number,
     },
     { required: true }
@@ -29,8 +29,8 @@ const createFormControls = () => {
   return {
     question: createControl(
       {
-        label: "Введите вопрос",
-        errorMessage: "Вопрос не может быть пустым",
+        label: "Question",
+        errorMessage: "The field can't be empthy",
       },
       { required: true }
     ),
@@ -140,7 +140,7 @@ export class QuizCreator extends Component {
   render() {
     const select = (
       <Select
-        label="Выберите правильный ответ"
+        label="Chose the right answer"
         value={this.state.rightAnswerId}
         onChange={this.selectChangeHandler}
         options={[
@@ -163,14 +163,14 @@ export class QuizCreator extends Component {
             <Button
               btnType="secondary"
               onClick={this.addQuestionHandler}
-              value="Добавить вопрос"
+              value="Add question"
               disabled={!this.state.isFormValid}
             />
 
             <Button
               btnType="primary"
               onClick={this.createQuizHandler}
-              value="Добавить тест"
+              value="Add quiz"
               disabled={this.props.quiz.length === 0}
             />
           </div>

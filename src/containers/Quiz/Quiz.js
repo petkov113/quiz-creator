@@ -20,7 +20,7 @@ const Quiz = ({ match, requestQuiz, retry, ...props }) => {
 
   return (
     <div className={classes.Quiz}>
-      <h1>Ответьте на все вопросы</h1>
+      <h1>Answer the questions</h1>
       <div className={classes.QuizWrapper}>
         {props.loading || props.quiz === null ? (
           <Loader />

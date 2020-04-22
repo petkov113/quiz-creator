@@ -31,17 +31,17 @@ const FinishedQuiz = (props) => {
       </ul>
 
       <p>
-        Правильных ответов: {succesCount} из {props.quiz.length}
+       Correct answers: {succesCount} out of {props.quiz.length}
       </p>
 
       <div>
         <Button
           onClick={props.onRetry}
-          value="Начать сначала"
+          value="Start over"
           btnType="primary"
         />
         <Link to="/">
-          <Button value="Решить другой тест" btnType="secondary" />
+          <Button value="Another Quiz" btnType="secondary" />
         </Link>
       </div>
     </div>

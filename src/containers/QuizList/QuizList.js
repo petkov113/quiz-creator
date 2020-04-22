@@ -22,7 +22,7 @@ const QuizList = ({ quizes, getQuizes, loading }) => {
 
   return (
     <div className={classes.QuizContainer}>
-      <h1>Список тестов</h1>
+      <h1>Quizzes</h1>
       <div className={classes.QuizList}>
         {loading ? <Loader /> : <ul>{renderQuizes()}</ul>}
       </div>
