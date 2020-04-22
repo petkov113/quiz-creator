@@ -3,9 +3,17 @@ import classes from "./Input.module.css";
 
 const isInvalid = ({ valid, touched, shouldValidate }) => {
   return !valid && shouldValidate && touched;
-}
+};
 
-const Input = ({ type, label, value, errorMessage, onChange, ...props }) => {
+const Input = ({
+  type,
+  label,
+  value,
+  errorMessage,
+  onChange,
+  disabled,
+  ...props
+}) => {
   const inputType = type || "text";
   const cls = [classes.Input];
   const htmlFor = `${inputType}-${Math.random()}`;
@@ -18,7 +26,13 @@ const Input = ({ type, label, value, errorMessage, onChange, ...props }) => {
     <div className={cls.join(" ")}>
       <label htmlFor={htmlFor}>{label}</label>
 
-      <input type={inputType} id={htmlFor} value={value} onChange={onChange} />
+      <input
+        type={inputType}
+        id={htmlFor}
+        value={value}
+        onChange={onChange}
+        disabled={disabled}
+      />
       {isInvalid(props) ? <span>{errorMessage} </span> : "\u00A0"}
     </div>
   );

@@ -27,6 +27,13 @@ const createOptionControl = (number) => {
 
 const createFormControls = () => {
   return {
+    name: createControl(
+      {
+        label: "Quiz name",
+        errorMessage: "The field can't be empthy",
+      },
+      { required: true }
+    ),
     question: createControl(
       {
         label: "Question",
@@ -56,6 +63,7 @@ export class QuizCreator extends Component {
     const quiz = [...this.props.quiz];
     const index = quiz.length + 1;
     const {
+      name,
       question,
       option1,
       option2,
@@ -64,6 +72,7 @@ export class QuizCreator extends Component {
     } = this.state.formControls;
 
     const questionItem = {
+      name: name.value,
       question: question.value,
       id: index,
       rightAnswerId: this.state.rightAnswerId,
@@ -113,12 +122,20 @@ export class QuizCreator extends Component {
   renderControls() {
     return Object.keys(this.state.formControls).map((controlName, index) => {
       const control = this.state.formControls[controlName];
+      let value = control.value;
+      let disabled = false;
+
+      if (index === 0 && this.props.quiz[0]) {
+        value = this.props.quiz[0].name;
+        disabled = true;
+      }
 
       return (
         <React.Fragment key={index}>
           <Input
             label={control.label}
-            value={control.value}
+            value={value}
+            disabled={disabled}
             valid={control.valid}
             shouldValidate={!!control.validation}
             touched={control.touched}
@@ -128,7 +145,7 @@ export class QuizCreator extends Component {
             }
           />
 
-          {index === 0 ? <hr /> : null}
+          {index === 0 || index === 1 ? <hr /> : null}
         </React.Fragment>
       );
     });

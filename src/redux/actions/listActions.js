@@ -8,10 +8,10 @@ export function getQuizes() {
       dispatch(showLoader());
       const response = await axios.get("quiz.json");
       const quizes = [];
-      Object.keys(response.data).forEach((key, index) => {
+      Object.entries(response.data).forEach((quiz) => {
         quizes.push({
-          id: key,
-          name: `Test №${index + 1}`,
+          id: quiz[0],
+          name: quiz[1][0].name,
         });
       });
       dispatch(hideLoader());
