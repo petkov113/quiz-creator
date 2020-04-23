@@ -12,7 +12,10 @@ import Select from "../../components/UI/Select/Select";
 import {
   createQuiz,
   addQuizQuestion,
+  resetQuizCreator,
+  deleteQuestion
 } from "../../redux/actions/creatorActions";
+import QuestionCard from "../../components/QuestionCard/QuestionCard";
 
 const createOptionControl = (number) => {
   return createControl(
@@ -26,8 +29,10 @@ const createOptionControl = (number) => {
 };
 
 const createFormControls = (questionItem) => {
-  let disabled = false, value='', valid = false;
-  
+  let disabled = false,
+    value = "",
+    valid = false;
+
   if (questionItem) {
     value = questionItem.name;
     disabled = true;
@@ -41,7 +46,7 @@ const createFormControls = (questionItem) => {
         errorMessage: "The field can't be empthy",
         value,
         disabled,
-        valid
+        valid,
       },
       { required: true }
     ),
@@ -71,8 +76,7 @@ export class QuizCreator extends Component {
   addQuestionHandler = (event) => {
     event.preventDefault();
 
-    const quiz = [...this.props.quiz];
-    const index = quiz.length + 1;
+    const id = new Date();
     const {
       name,
       question,
@@ -85,7 +89,7 @@ export class QuizCreator extends Component {
     const questionItem = {
       name: name.value,
       question: question.value,
-      id: index,
+      id,
       rightAnswerId: this.state.rightAnswerId,
       answers: [
         { text: option1.value, id: option1.id },
@@ -102,7 +106,7 @@ export class QuizCreator extends Component {
     this.setState({
       isFormValid: false,
       rightAnswerId: 1,
-      formControls
+      formControls,
     });
   };
 
@@ -119,7 +123,7 @@ export class QuizCreator extends Component {
 
     this.setState({
       formControls,
-      isFormValid: validateForm(formControls)
+      isFormValid: validateForm(formControls),
     });
   };
 
@@ -131,6 +135,16 @@ export class QuizCreator extends Component {
       formControls: createFormControls(),
     });
     this.props.createQuiz();
+  };
+
+  resetQuizHandler = (e) => {
+    e.preventDefault();
+    this.setState({
+      isFormValid: false,
+      rightAnswerId: 1,
+      formControls: createFormControls(),
+    });
+    this.props.resetQuizCreator();
   };
 
   renderControls() {
@@ -160,6 +174,10 @@ export class QuizCreator extends Component {
 
   selectChangeHandler = (event) =>
     this.setState({ rightAnswerId: +event.target.value });
+
+  deleteItem = (id) => {
+    this.props.deleteQuestion(id)
+  }
 
   render() {
     const select = (
@@ -197,8 +215,31 @@ export class QuizCreator extends Component {
               value="Add quiz"
               disabled={this.props.quiz.length === 0}
             />
+
+            <Button
+              btnType="secondary"
+              onClick={this.resetQuizHandler}
+              value="Reset quiz"
+              disabled={!(!!this.state.formControls.name.value)}
+            />
           </div>
         </form>
+        <div className={classes.overviewContainer}>
+          <h2>Quiz overview</h2>
+          <hr />
+          {this.props.quiz.length === 0 ? (
+            <span>No questions for the moment</span>
+          ) : (
+            this.props.quiz.map((questionItem, index) => (
+              <QuestionCard
+                question={questionItem.question}
+                answers={questionItem.answers}
+                onDelete={() => this.deleteItem(questionItem.id)}
+                key={`question-${index}`}
+              />
+            ))
+          )}
+        </div>
       </div>
     );
   }
@@ -211,6 +252,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   addQuizQuestion,
   createQuiz,
+  resetQuizCreator,
+  deleteQuestion,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuizCreator);

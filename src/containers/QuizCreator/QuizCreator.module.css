@@ -1,15 +1,16 @@
 .QuizCreator {
   display: flex;
-  justify-content: center;
+  padding: 30px;
+  box-sizing: border-box;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
   flex-grow: 1;
   width: 100%;
   background-color: #e0e5ec;
 }
-
-.QuizCreator > div {
-  width: 100%;
-  max-width: 600px;
-  padding: 0 20px;
+.QuizCreator h2 {
+  text-align: center;
 }
 
 .creatorForm {
@@ -17,12 +18,27 @@
   box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
     -9px -9px 16px rgba(255, 255, 255, 0.5);
   padding: 30px;
-  margin-top: 70px;
-  margin-bottom: 70px;
+  width: 600px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 7px;
+}
+
+.overviewContainer {
+  background-color: #e0e5ec;
+  box-shadow: 9px 9px 16px rgb(163, 177, 198, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5);
+  padding: 30px;
   width: 600px;
   display: flex;
   flex-direction: column;
   border-radius: 7px;
+  margin-bottom: 30px;
+}
+
+.overviewContainer > span {
+  text-align: center;
 }
 
 .btnContainer {

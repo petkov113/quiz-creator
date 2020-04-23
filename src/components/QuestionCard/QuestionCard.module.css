@@ -1,0 +1,32 @@
+.QuestionCard {
+  padding: 25px;
+  border-radius: 7px;
+  box-sizing: border-box;
+  margin: 15px;
+  box-shadow: 4px 4px 4px 0px #d1d9e6 inset, -2px -2px 2px 0px #fff inset;
+  background-color: #e0e5ec;
+  position: relative;
+}
+
+.Question {
+  font-weight: 600;
+}
+
+.Answer {
+  list-style-type: circle;
+  padding: 4px;
+  width: 40%;
+}
+
+.Delete {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: rgb(207, 63, 63);
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.Delete:hover {
+  transform: scale(1.2)
+}

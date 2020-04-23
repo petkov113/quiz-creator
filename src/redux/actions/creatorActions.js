@@ -1,5 +1,5 @@
 import axios from "../../axios/axios-quiz";
-import { ADD_QUESTION, RESET_QUIZ } from "../types/types";
+import { ADD_QUESTION, RESET_QUIZ, DELETE_QUESTION } from "../types/types";
 
 export const addQuizQuestion = (item) => {
   return {
@@ -7,6 +7,13 @@ export const addQuizQuestion = (item) => {
     item,
   };
 };
+
+export const deleteQuestion = (id) => {
+  return {
+    type: DELETE_QUESTION,
+    id
+  }
+}
 
 export const resetQuizCreator = () => {
   return {
