@@ -3,11 +3,14 @@ import {
   AUTH_LOGOUT,
   AUTH_ERROR,
   AUTH_CLEAR_ERROR,
+  SHOW_LOADER,
+  HIDE_LOADER,
 } from "../types/types";
 
 const INITIAL_STATE = {
   token: null,
   error: null,
+  loading: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -20,6 +23,10 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, error: action.error };
     case AUTH_CLEAR_ERROR:
       return { ...state, error: null };
+    case SHOW_LOADER:
+      return { ...state, loading: true };
+    case HIDE_LOADER:
+      return { ...state, loading: false };
     default:
       return state;
   }

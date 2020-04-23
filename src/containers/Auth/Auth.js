@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import classes from "./Auth.module.css";
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
+import Loader from "../../components/UI/Loader/Loader";
 import { auth, authClear } from "../../redux/actions/authActions";
 
 const validateEmail = (email) => {
@@ -126,14 +127,14 @@ class Auth extends Component {
   };
 
   componentWillUnmount() {
-    this.props.authClear()
+    this.props.authClear();
   }
 
   render() {
     return (
       <div className={classes.Auth}>
         <div>
-          <h1>Авторизация</h1>
+          <h1>Authorization</h1>
 
           <form onSubmit={this.sumbitHandler} className={classes.AuthForm}>
             {this.renderInputs()}
@@ -151,7 +152,9 @@ class Auth extends Component {
                 onClick={this.registerHandler}
                 value="Register"
               />
-              {this.props.error ? (
+              {this.props.loading ? (
+                <Loader />
+              ) : this.props.error ? (
                 <span className={classes.warning}>{this.props.error}</span>
               ) : null}
             </div>
@@ -162,6 +165,9 @@ class Auth extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ error: state.auth.error });
+const mapStateToProps = (state) => ({
+  error: state.auth.error,
+  loading: state.auth.loading,
+});
 
 export default connect(mapStateToProps, { auth, authClear })(Auth);

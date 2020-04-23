@@ -25,12 +25,23 @@ const createOptionControl = (number) => {
   );
 };
 
-const createFormControls = () => {
+const createFormControls = (questionItem) => {
+  let disabled = false, value='', valid = false;
+  
+  if (questionItem) {
+    value = questionItem.name;
+    disabled = true;
+    valid = true;
+  }
+
   return {
     name: createControl(
       {
         label: "Quiz name",
         errorMessage: "The field can't be empthy",
+        value,
+        disabled,
+        valid
       },
       { required: true }
     ),
@@ -52,7 +63,7 @@ export class QuizCreator extends Component {
   state = {
     isFormValid: false,
     rightAnswerId: 1,
-    formControls: createFormControls(),
+    formControls: createFormControls(this.props.quiz[0]),
   };
 
   submitHandler = (event) => event.preventDefault();
@@ -86,10 +97,12 @@ export class QuizCreator extends Component {
 
     this.props.addQuizQuestion(questionItem);
 
+    const formControls = createFormControls(questionItem);
+
     this.setState({
       isFormValid: false,
       rightAnswerId: 1,
-      formControls: createFormControls(),
+      formControls
     });
   };
 
@@ -99,13 +112,14 @@ export class QuizCreator extends Component {
 
     control.touched = true;
     control.value = value;
+
     control.valid = validate(control.value, control.validation);
 
     formControls[controlName] = control;
 
     this.setState({
       formControls,
-      isFormValid: validateForm(formControls),
+      isFormValid: validateForm(formControls)
     });
   };
 
@@ -122,20 +136,13 @@ export class QuizCreator extends Component {
   renderControls() {
     return Object.keys(this.state.formControls).map((controlName, index) => {
       const control = this.state.formControls[controlName];
-      let value = control.value;
-      let disabled = false;
-
-      if (index === 0 && this.props.quiz[0]) {
-        value = this.props.quiz[0].name;
-        disabled = true;
-      }
 
       return (
         <React.Fragment key={index}>
           <Input
             label={control.label}
-            value={value}
-            disabled={disabled}
+            value={control.value}
+            disabled={control.disabled}
             valid={control.valid}
             shouldValidate={!!control.validation}
             touched={control.touched}
@@ -157,7 +164,7 @@ export class QuizCreator extends Component {
   render() {
     const select = (
       <Select
-        label="Chose the right answer"
+        label="Choose the correct answer"
         value={this.state.rightAnswerId}
         onChange={this.selectChangeHandler}
         options={[

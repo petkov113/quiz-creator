@@ -1,5 +1,6 @@
 import axios from "axios";
 import { AUTH_SUCCESS, AUTH_LOGOUT, AUTH_ERROR, AUTH_CLEAR_ERROR } from "../types/types";
+import { showLoader, hideLoader } from "./commonActions";
 
 export const autoLogin = () => (dispatch) => {
   const token = localStorage.getItem("token");
@@ -54,6 +55,7 @@ export const autoLogout = (time) => (dispatch) => {
 };
 
 export const auth = (email, password, isLogin) => async (dispatch) => {
+  dispatch(showLoader())
   const authData = { email, password, returnSecureToken: true };
   let url;
 
@@ -77,7 +79,9 @@ export const auth = (email, password, isLogin) => async (dispatch) => {
 
     dispatch(authSucces(data.idToken));
     dispatch(autoLogout(data.expiresIn));
+    dispatch(hideLoader())
   } catch (e) {
+    dispatch(hideLoader());
     if (e.response.data.error.message === "EMAIL_EXISTS") {
       dispatch(authError("This email is already registered. Please, sign in."));
     } else if (e.response.data.error.message === "EMAIL_NOT_FOUND") {
