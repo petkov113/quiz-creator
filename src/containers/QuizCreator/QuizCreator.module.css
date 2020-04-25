@@ -1,6 +1,7 @@
 .QuizCreator {
   display: flex;
-  padding: 30px;
+  padding-top: 70px;
+  padding-bottom: 70px;
   box-sizing: border-box;
   justify-content: space-around;
   align-items: flex-start;
