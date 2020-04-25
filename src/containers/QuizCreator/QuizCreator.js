@@ -220,7 +220,7 @@ export class QuizCreator extends Component {
               btnType="secondary"
               onClick={this.resetQuizHandler}
               value="Reset quiz"
-              disabled={!(!!this.state.formControls.name.value)}
+              disabled={!!!this.state.formControls.name.value}
             />
           </div>
         </form>
@@ -235,7 +235,8 @@ export class QuizCreator extends Component {
                 question={questionItem.question}
                 answers={questionItem.answers}
                 onDelete={() => this.deleteItem(questionItem.id)}
-                key={`question-${index}`}
+                key={index}
+                rightAnswerId={questionItem.rightAnswerId}
               />
             ))
           )}
