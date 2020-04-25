@@ -1,10 +1,10 @@
 export function createControl(config, validation) {
   return {
-    ...config,
+    value: "",
     validation,
     valid: !validation,
+    ...config,
     touched: false,
-    value: "",
   };
 }
 
@@ -24,7 +24,7 @@ export function validate(value, validation = null) {
 
 export function validateForm(formControls) {
   let isFormValid = true;
-
+  
   for (let control in formControls) {
     if (formControls.hasOwnProperty(control)) {
       isFormValid = formControls[control].valid && isFormValid;

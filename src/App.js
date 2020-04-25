@@ -36,7 +36,7 @@ const App = ({ isAuthenticated, autoLogin }) => {
     );
   }
 
-  return <Layout>{routes}</Layout>;
+return <Layout>{routes}</Layout>;
 };
 
 const mapStateToProps = (state) => ({

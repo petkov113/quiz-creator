@@ -26,6 +26,10 @@
   margin-left: 10px;
 }
 
+.FinishedQuiz ul li {
+  margin-bottom: 20px;
+}
+
 .success {
   color: rgba(0, 122, 35, 0.382);
 }
