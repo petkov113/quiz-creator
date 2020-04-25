@@ -89,7 +89,7 @@ export const auth = (email, password, isLogin) => async (dispatch) => {
         authError("This email haven't been registered yet. Please, register.")
       );
     } else {
-      dispatch(authError("Server error"));
+      dispatch(authError("Email or password is wrong"));
     }
   }
 };

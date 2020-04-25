@@ -150,6 +150,7 @@ class Auth extends Component {
               <Button
                 btnType="secondary"
                 onClick={this.registerHandler}
+                disabled={!this.state.isFormValid}
                 value="Register"
               />
               {this.props.loading ? (
